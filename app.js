@@ -1,16 +1,21 @@
-var express = require("express"),
-    app = express(),
-    server = require("http").createServer(app),
-    io = require("socket.io").listen(server),
-    users = {};
+var express = require("express");
+var app = express();
+var server = require("http").createServer(app);
+var io = require("socket.io").listen(server);
+var users = {};
 
-server.listen(3003);
+server.listen(process.env.PORT, process.env.IP);
 
+
+//server.listen(process.env.PORT);
+  
 app.get("/", function(req, res) {
     res.sendfile(__dirname + "/index.html");
+    console.log("!!!!!!!!!!app.get");
 });
 
 io.sockets.on("connection", function(socket) {
+  console.log("socket connect");
     socket.on("new user", function(data, callback) {
         if (data in users) {
             callback(false);

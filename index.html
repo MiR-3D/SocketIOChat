@@ -35,7 +35,7 @@
             </div>
             <div id="users"></div>
         </div>
-        <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+        <script src="https://code.jquery.com/jquery-latest.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
         <script>
             jQuery(function($) {
@@ -50,8 +50,11 @@
 
                 $nickForm.submit(function(e) {
                     e.preventDefault();
+                    
+                    console.log("!!!!!!!!!!!!!hey");
 
                     socket.emit("new user", $nickBox.val(), function(data) {
+                         console.log("!!!!!!!!!!Index.socket.emit");
                         if (data) {
                             $("#nickWrap").hide();
                             $("#contentWrap").show();
